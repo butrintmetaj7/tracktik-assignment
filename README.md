@@ -36,6 +36,14 @@ Run migrations
 
     ./vendor/bin/sail artisan migrate
 
+
+# Project 
+
+This creates employee providers for each provider a Provider file with the mapping schema rules will be created and a record of the provider on the database with a api_token that the provider will use in order to send data to the our API
+
+Run Create Employee Provider command
+    ./vendor/bin/sail artisan make:employee-provider ExampleProvider
+
 You can now access the server at http://localhost:80
 
 ----------

@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\EmployeeProvider;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class GenerateEmployeeProvider extends Command
 {
@@ -34,6 +36,13 @@ class GenerateEmployeeProvider extends Command
      */
     public function handle()
     {
+        $employeeProvider = EmployeeProvider::firstOrCreate(['name' => $this->argument('name')]);
+
+        if(!$employeeProvider){
+            $this->error('Error: EmployeeProvider with this name cannot be created or found.');
+            return;
+        }
+
         $path = app_path('EmployeeProviders/' . $this->argument('name') . $this->extension);
 
         if (file_exists($path)) {
@@ -43,7 +52,8 @@ class GenerateEmployeeProvider extends Command
 
         file_put_contents($path, $this->compileTemplate());
 
-        $this->info('Success: ' . $this->argument('name') . $this->extension .  'was created!');
+
+        $this->info('Success: ' . $this->argument('name') . ' Employee Provider was added!');
     }
 
 
@@ -53,4 +63,6 @@ class GenerateEmployeeProvider extends Command
 
         return str_replace('{{CLASS}}', $this->argument('name') . 'EmployeeProvider', $stub);
     }
+
+
 }
