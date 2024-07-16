@@ -2,7 +2,7 @@
 
 ----------
 
-## Installation
+## Installation with Docker Sail
 
 Clone the repository
 
@@ -19,10 +19,6 @@ Install all the dependencies using composer
 Copy the example env file and make the required configuration changes in the .env file
 
     cp .env.example .env
-
-Generate a new application key
-
-    php artisan key:generate
 
 Run the below command to start the docker containers
 
