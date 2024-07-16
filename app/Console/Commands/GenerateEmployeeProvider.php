@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\EmployeeProvider;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
 class GenerateEmployeeProvider extends Command
 {
@@ -63,6 +62,5 @@ class GenerateEmployeeProvider extends Command
 
         return str_replace('{{CLASS}}', $this->argument('name') . 'EmployeeProvider', $stub);
     }
-
 
 }
