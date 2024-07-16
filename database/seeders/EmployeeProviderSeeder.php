@@ -15,7 +15,5 @@ class EmployeeProviderSeeder extends Seeder
     {
         // Artisan::call('make:employee-provider', ['name' => 'Instagram']);
         // Artisan::call('make:employee-provider', ['name' => 'X']);
-
-        EmployeeProvider::factory()->createMany([['name' => 'Google'],['name' => 'Facebook']]);
     }
 }
