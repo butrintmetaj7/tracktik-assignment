@@ -15,7 +15,7 @@ Route::controller(AuthController::class)->group(function(){
 });
 
 Route::middleware([EnsureProviderIsValid::class, 'auth:sanctum'])->group(function () {
-    Route::resource('{provider}/employees', EmployeeController::class)->only([
+    Route::apiResource('{provider}/employees', EmployeeController::class)->only([
         'store', 'update'
     ]);
 });
