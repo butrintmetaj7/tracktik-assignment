@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Employee;
 
+use App\Rules\EmployeeProviderDataRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreEmployeeRequest extends FormRequest
@@ -22,9 +23,12 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'data' => ['required', 'array']
+            'data' => ['required', 'array', new EmployeeProviderDataRule()]
         ];
     }
+
+
+
 
 
 }

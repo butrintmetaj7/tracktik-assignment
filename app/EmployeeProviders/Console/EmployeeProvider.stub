@@ -4,6 +4,15 @@ namespace App\EmployeeProviders;
 
 class {{CLASS}} extends BaseEmployeeProvider
 {
+    /**
+     * List of required keys in the data array.
+     *
+     * @var array
+     */
+     public static $requiredKeys = [
+           // ex. userName
+     ];
+
     public static function mapSchema($data)
     {
       // define how the schema will be transformed

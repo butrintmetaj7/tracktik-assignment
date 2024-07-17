@@ -19,7 +19,11 @@ class EnsureProviderIsValid
         $provider = $request->route('provider');
 
         if (!EmployeeProviderHelper::providerExists($provider)) {
-            return response()->json(['error' => EmployeeProviderHelper::formattedProviderName($provider) . ' is not valid!'], 400);
+            return response()->json(
+                ['error' =>
+                EmployeeProviderHelper::formattedProviderName($provider) . ' is not a valid employee provider!'
+                ],
+                400);
         }
 
         return $next($request);

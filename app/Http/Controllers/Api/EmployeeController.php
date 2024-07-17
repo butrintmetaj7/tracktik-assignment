@@ -15,9 +15,9 @@ class EmployeeController extends BaseController
     {
         $provider = request()->route('provider');
 
-        $transformedEmployeeData = EmployeeProviderHelper::providerClassName($provider)::mapSchema($request->data);
+        $mappedEmployeeData = EmployeeProviderHelper::providerClassName($provider)::mapSchema($request->data);
 
-        $employee = Employee::create($transformedEmployeeData);
+        $employee = Employee::create($mappedEmployeeData);
 
         EmployeeCreated::dispatch($employee);
 

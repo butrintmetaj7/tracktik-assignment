@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Employee;
 
+use App\Rules\EmployeeProviderDataRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateEmployeeRequest extends FormRequest
@@ -11,7 +12,7 @@ class UpdateEmployeeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,7 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'data' => ['required', 'array', new EmployeeProviderDataRule()]
         ];
     }
 }
