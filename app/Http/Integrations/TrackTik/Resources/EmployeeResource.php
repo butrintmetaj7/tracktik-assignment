@@ -26,15 +26,15 @@ final readonly class EmployeeResource
             $response = $this->connector->send(
                 method: 'POST',
                 uri: "/employees",
-                options: new TrackTickEmployeeResource($employee),
+                options: [
+                    'json' => new TrackTickEmployeeResource($employee),
+                ],
             );
         } catch (Throwable $exception) {
             throw $exception;
         }
 
         return $response->json('data');
-
-        // update employee save track_tick_id
     }
 
     public function update(Employee $employee): array
@@ -43,7 +43,9 @@ final readonly class EmployeeResource
             $response = $this->connector->send(
                 method: 'PUT',
                 uri: "/employees/" . $employee->track_tik_id,
-                options: new TrackTickEmployeeResource($employee),
+                options: [
+                    'json' => new TrackTickEmployeeResource($employee),
+                ],
             );
         } catch (Throwable $exception) {
             throw $exception;

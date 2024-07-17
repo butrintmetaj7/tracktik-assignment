@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\EmployeeCreated;
-use App\Listeners\SendEmployeeToTrackTikApi;
+use App\Events\EmployeeUpdated;
+use App\Listeners\CreateTrackTikEmployee;
+use App\Listeners\UpdateTrackTikEmployee;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,7 +26,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Event::listen(
             EmployeeCreated::class,
-            SendEmployeeToTrackTikApi::class,
+            CreateTrackTikEmployee::class,
+        );
+
+        Event::listen(
+            EmployeeUpdated::class,
+            UpdateTrackTikEmployee::class,
         );
     }
 }

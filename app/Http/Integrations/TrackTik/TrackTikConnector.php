@@ -7,7 +7,7 @@ namespace App\Http\Integrations\TrackTik;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Http\Client\Response;
 
 final readonly class TrackTikConnector
 {
@@ -31,5 +31,10 @@ final readonly class TrackTikConnector
                 )->asJson()->acceptJson(),
             ),
         );
+    }
+
+    public function send(string $method, string $uri, array $options = []): Response
+    {
+        return $this->request->$method($uri, $options);
     }
 }
