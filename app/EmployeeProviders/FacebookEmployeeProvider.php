@@ -4,7 +4,7 @@ namespace App\EmployeeProviders;
 
 class FacebookEmployeeProvider extends BaseEmployeeProvider
 {
-    public function mapSchema($data)
+    public static function mapSchema($data)
     {
       return [
         'first_name' => $data['googleFirstName'],

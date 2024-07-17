@@ -14,13 +14,28 @@ class EmployeeProviderHelper extends FormRequest
      */
     public static function providerExists($provider): bool
     {
-        $providerClass = 'App\\EmployeeProviders\\' . self::formattedProviderName($provider) . 'EmployeeProvider';
-
-        return class_exists($providerClass);
+        return class_exists(self::providerClassName($provider));
     }
 
+    /**
+     * Format provider name to upper case
+     *
+     * @param $provider
+     * @return string
+     */
     public static function formattedProviderName($provider): string
     {
        return ucfirst(strtolower($provider));
+    }
+
+    /**
+     * Full path to the provider class
+     *
+     * @param $provider
+     * @return string
+     */
+    public static function providerClassName($provider): string
+    {
+        return 'App\\EmployeeProviders\\' . self::formattedProviderName($provider) . 'EmployeeProvider';
     }
 }

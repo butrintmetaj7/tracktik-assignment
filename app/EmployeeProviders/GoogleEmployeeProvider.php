@@ -4,7 +4,7 @@ namespace App\EmployeeProviders;
 
 class GoogleEmployeeProvider extends BaseEmployeeProvider
 {
-    public function mapSchema($data)
+    public static function mapSchema($data)
     {
       return [
         'first_name' => $data['employee_first_name'],

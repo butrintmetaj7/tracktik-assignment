@@ -4,7 +4,7 @@ namespace App\EmployeeProviders;
 
 class {{CLASS}} extends BaseEmployeeProvider
 {
-    public function mapSchema($data)
+    public static function mapSchema($data)
     {
       // define how the schema will be transformed
       return [];
