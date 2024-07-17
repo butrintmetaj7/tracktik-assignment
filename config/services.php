@@ -39,6 +39,7 @@ return [
         'client_id' => env('TRACKTIK_CLIENT_ID'),
         'client_secret' => env('TRACKTIK_CLIENT_SECRET'),
         'url' => env('TRACKTIK_URL'),
-        'token' =>  env('TRACKTIK_TOKEN'),
+        'oauth2_url' => env('TRACKTIK_OAUTH2_URL'),
+        'refresh_token' =>  env('TRACKTIK_REFRESH_TOKEN'),
     ],
 ];

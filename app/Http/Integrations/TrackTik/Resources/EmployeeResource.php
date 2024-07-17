@@ -1,31 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
-
 namespace App\Http\Integrations\TrackTik\Resources;
 
 use App\Http\Integrations\TrackTik\TrackTikConnector;
 use App\Http\Resources\Employees\TrackTickEmployeeResource;
 use App\Models\Employee;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Collection;
 use Throwable;
 
-
-final readonly class EmployeeResource
+class EmployeeResource
 {
-    public function __construct(
-        private TrackTikConnector $connector,
-    ) {}
+    private $connector;
+
+    public function __construct()
+    {
+        $this->connector = new TrackTikConnector();
+    }
 
     public function create(Employee $employee): array
     {
         try {
             $response = $this->connector->send(
                 method: 'POST',
-                uri: "/employees",
+                uri: '/employees',
                 options: [
                     'json' => new TrackTickEmployeeResource($employee),
                 ],
