@@ -13,24 +13,20 @@ class EmployeeController extends BaseController
 {
     public function store(StoreEmployeeRequest $request)
     {
-        $provider = request()->route('provider');
+        $employeeData = EmployeeProviderHelper::mapEmployeeData(request('provider'), $request->data);
 
-        $mappedEmployeeData = EmployeeProviderHelper::providerClassName($provider)::mapSchema($request->data);
-
-        $employee = Employee::create($mappedEmployeeData);
+        $employee = Employee::create($employeeData);
 
         EmployeeCreated::dispatch($employee);
 
         return $this->sendResponse(compact('employee'), 'Employee Created!');
     }
 
-    public function update(UpdateEmployeeRequest $request, Employee $employee)
+    public function update(UpdateEmployeeRequest $request, $provider, Employee $employee)
     {
-        $provider = request()->route('provider');
+        $employeeData = EmployeeProviderHelper::mapEmployeeData($provider, $request->data);
 
-        $transformedEmployeeData = EmployeeProviderHelper::providerClassName($provider)::mapSchema($request->data);
-
-        if(!$employee->update($transformedEmployeeData)){
+        if(!$employee->update($employeeData)){
             return $this->sendError('Could not update employee!');
         }
 

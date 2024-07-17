@@ -18,6 +18,22 @@ class EmployeeProviderHelper extends FormRequest
     }
 
     /**
+     * Map the schema for the given provider and data.
+     *
+     * @param string $provider
+     * @param array $data
+     * @return array
+     */
+    public static function mapEmployeeData($provider, $data)
+    {
+        $providerClass = self::providerClassName($provider);
+
+        $mappedData = $providerClass::mapSchema($data);
+
+        return array_merge($mappedData, ['provider' => $provider]);
+    }
+
+    /**
      * Format provider name to upper case
      *
      * @param $provider

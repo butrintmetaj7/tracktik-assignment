@@ -18,8 +18,8 @@ class Employee extends Model
         'first_name',
         'last_name',
         'email',
-        'birthday',
-        'primary_phone',
-        'job_title'
+        'job_title',
+        'provider',
+        'track_tick_id'
     ];
 }

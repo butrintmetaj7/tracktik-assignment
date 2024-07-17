@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\EmployeeCreated;
+use App\Events\EmployeeUpdated;
 use App\Http\Integrations\TrackTik\Resources\EmployeeResource;
 use App\Models\Employee;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -25,7 +25,7 @@ class UpdateTrackTikEmployee
     /**
      * Handle the event.
      */
-    public function handle(EmployeeCreated $event): void
+    public function handle(EmployeeUpdated $event): void
     {
         $employee = $event->employee;
 
