@@ -35,13 +35,6 @@ class GenerateEmployeeProvider extends Command
      */
     public function handle()
     {
-        $employeeProvider = EmployeeProvider::firstOrCreate(['name' => $this->argument('name')]);
-
-        if(!$employeeProvider){
-            $this->error('Error: EmployeeProvider with this name cannot be created or found.');
-            return;
-        }
-
         $path = app_path('EmployeeProviders/' . $this->argument('name') . $this->extension);
 
         if (file_exists($path)) {

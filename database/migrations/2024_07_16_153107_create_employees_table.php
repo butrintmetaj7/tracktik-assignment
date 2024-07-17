@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('birthday');
             $table->string('primary_phone');
             $table->string('job_title');
+            $table->string('provider');
             $table->timestamps();
         });
     }
