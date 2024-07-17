@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'tracktik' => [
+        'client_id' => env('TRACKTIK_CLIENT_ID'),
+        'client_secret' => env('TRACKTIK_CLIENT_SECRET'),
+        'url' => env('TRACKTIK_URL'),
+        'token' =>  env('TRACKTIK_TOKEN'),
+    ],
 ];

@@ -16,10 +16,9 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
-            $table->string('birthday');
-            $table->string('primary_phone');
             $table->string('job_title');
             $table->string('provider');
+            $table->string('track_tik_id')->nullable();
             $table->timestamps();
         });
     }
