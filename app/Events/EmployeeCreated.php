@@ -15,7 +15,7 @@ class EmployeeCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $employee;
+    public Employee $employee;
 
     /**
      * Create a new event instance.
