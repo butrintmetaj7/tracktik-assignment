@@ -2,27 +2,40 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\EmployeeCreated;
+use App\Events\EmployeeUpdated;
 use App\Helpers\EmployeeProviderHelper;
-use App\Http\Controllers\API\BaseController;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
+use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Models\Employee;
-use Illuminate\Http\Request as HttpRequest;
-use Illuminate\Support\Facades\Gate;
 
 class EmployeeController extends BaseController
 {
-    public function store(HttpRequest $request)
+    public function store(StoreEmployeeRequest $request)
     {
         $provider = request()->route('provider');
-
-        if(!EmployeeProviderHelper::providerExists($provider)){
-            return $this->sendError(EmployeeProviderHelper::formattedProviderName($provider) . ' is not valid!');
-        }
 
         $transformedEmployeeData = EmployeeProviderHelper::providerClassName($provider)::mapSchema($request->data);
 
         $employee = Employee::create($transformedEmployeeData);
 
-        return $this->sendResponse([], 'Success');
+        EmployeeCreated::dispatch($employee);
+
+        return $this->sendResponse(compact('employee'), 'Employee Created!');
+    }
+
+    public function update(UpdateEmployeeRequest $request, Employee $employee)
+    {
+        $provider = request()->route('provider');
+
+        $transformedEmployeeData = EmployeeProviderHelper::providerClassName($provider)::mapSchema($request->data);
+
+        if(!$employee->update($transformedEmployeeData)){
+            return $this->sendError('Could not update employee!');
+        }
+
+        EmployeeUpdated::dispatch($employee);
+
+        return $this->sendResponse(compact('employee'), 'Employee Updated!');
     }
 }
