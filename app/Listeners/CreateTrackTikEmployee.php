@@ -27,14 +27,15 @@ class CreateTrackTikEmployee
      */
     public function handle(EmployeeCreated $event): void
     {
-        $employee = $event->employee;
-
         try {
+            $employee = $event->employee;
+
             $response = $this->employeeResource->create($employee);
 
             $employee->track_tik_id = $response['id'];
 
             $employee->save();
+
         } catch (\Throwable $e) {
             // Handle the exception as needed
             Log::error('Failed to create employee in TrackTik', ['error' => $e->getMessage()]);

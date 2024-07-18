@@ -27,9 +27,9 @@ class UpdateTrackTikEmployee
      */
     public function handle(EmployeeUpdated $event): void
     {
-        $employee = $event->employee;
-
         try {
+            $employee = $event->employee;
+
             $this->employeeResource->update($employee);
 
         } catch (\Throwable $e) {

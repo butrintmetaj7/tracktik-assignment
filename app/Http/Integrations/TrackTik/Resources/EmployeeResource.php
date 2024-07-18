@@ -23,7 +23,7 @@ class EmployeeResource
                 method: 'POST',
                 uri: '/employees',
                 options: [
-                    'json' => new TrackTickEmployeeResource($employee),
+                    'json' =>  $this->mapTrackTikAttributes($employee),
                 ],
             );
         } catch (Throwable $exception) {
@@ -40,7 +40,7 @@ class EmployeeResource
                 method: 'PUT',
                 uri: "/employees/" . $employee->track_tik_id,
                 options: [
-                    'json' => new TrackTickEmployeeResource($employee),
+                    'json' => $this->mapTrackTikAttributes($employee)
                 ],
             );
         } catch (Throwable $exception) {
@@ -48,5 +48,17 @@ class EmployeeResource
         }
 
         return $response->json('data');
+    }
+
+
+
+    private function mapTrackTikAttributes(Employee $employee): array
+    {
+        return [
+            'firstName' => $employee->first_name,
+            'lastName' => $employee->last_name,
+            'email' => $employee->email,
+            'jobTitle' => $employee->job_title
+        ];
     }
 }

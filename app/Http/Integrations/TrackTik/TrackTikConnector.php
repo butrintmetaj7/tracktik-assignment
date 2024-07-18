@@ -2,6 +2,7 @@
 
 namespace App\Http\Integrations\TrackTik;
 
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 
@@ -25,8 +26,8 @@ class TrackTikConnector
         $response = Http::post(config('services.tracktik.oauth2_url'), [
             'client_id' => config('services.tracktik.client_id'),
             'client_secret' => config('services.tracktik.client_secret'),
-            'refresh_token' => $this->refreshToken,
-            'grant_type' =>  'refresh_token'
+            'refresh_token' => $this->refreshToken ?: config('services.tracktik.refresh_token'),
+            'grant_type' => 'refresh_token'
         ]);
 
         if ($response->successful()) {
@@ -45,13 +46,20 @@ class TrackTikConnector
         return !Cache::has('tracktik_access_token');
     }
 
+    /**
+     * @throws ConnectionException
+     */
     public function send(string $method, string $uri, array $options = [])
     {
         if ($this->isTokenExpired()) {
             $this->refreshToken();
         }
 
-        $response = Http::withToken($this->token)->$method(config('services.tracktik.client_id') . $uri, $options);
+        $response = Http::withToken($this->token)->send(
+            $method,
+            config('services.tracktik.url') . $uri,
+            $options
+        );
 
         if ($response->failed()) {
             throw new \Exception('API request failed: ' . $response->body());
