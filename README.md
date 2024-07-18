@@ -1,4 +1,4 @@
-# Tracktik Assignment App
+# Tracktik Assignment API
 
 ----------
 
@@ -36,7 +36,7 @@ Run migrations
 
 ---------
 
-# TrackTik Assignment Details
+# TrackTik Assignment API Details
 
 This project creates employee providers for each provider a Provider file with the mapping schema rules will be created
 
