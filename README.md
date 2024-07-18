@@ -24,10 +24,6 @@ Run the below command to start the docker containers
 
     ./vendor/bin/sail up -d
 
-Generate a new JWT authentication secret key
-
-    php artisan jwt:generate
-
 Generate app secret
     
     ./vendor/bin/sail artisan key:generate
@@ -35,6 +31,15 @@ Generate app secret
 Run migrations
 
     ./vendor/bin/sail artisan migrate
+
+Generate a new Employee Provider
+
+    ./vendor/bin/sail artisan make:employee-provider Example1
+
+This command creates a file Example1EmployeeProvider,
+that allows you to tell the API how the data will be received and mapped
+
+----------
 
 To communicate with third party api to send the employee data you need these in your env
 
