@@ -36,6 +36,14 @@ Run migrations
 
     ./vendor/bin/sail artisan migrate
 
+To communicate with third party api to send the employee data you need these in your env
+
+    TRACKTIK_CLIENT_ID=
+    TRACKTIK_CLIENT_SECRET=
+    TRACKTIK_URL=
+    TRACKTIK_OAUTH2_URL=
+    TRACKTIK_REFRESH_TOKEN=
+
 
 # Project 
 
