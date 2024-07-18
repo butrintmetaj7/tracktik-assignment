@@ -24,6 +24,8 @@ Run the below command to start the docker containers
 
     ./vendor/bin/sail up -d
 
+You can now access the server at http://localhost:80
+
 Generate app secret
     
     ./vendor/bin/sail artisan key:generate
@@ -31,6 +33,16 @@ Generate app secret
 Run migrations
 
     ./vendor/bin/sail artisan migrate
+
+---------
+
+# TrackTik Assignment Details
+
+This project creates employee providers for each provider a Provider file with the mapping schema rules will be created
+
+Run Create Employee Provider command
+./vendor/bin/sail artisan make:employee-provider ExampleProvider
+
 
 Generate a new Employee Provider
 
@@ -41,6 +53,12 @@ that allows you to tell the API how the data will be received and mapped
 
 ----------
 
+To use the api endpoints to create/update employee data the provider should be included in the URL with their schema in the body's post request
+
+       :POST /api/{provider}/employees,  
+       :PUT /api/{provider}/employees/:id
+----------
+
 To communicate with third party api to send the employee data you need these in your env
 
     TRACKTIK_CLIENT_ID=
@@ -48,15 +66,5 @@ To communicate with third party api to send the employee data you need these in 
     TRACKTIK_URL=
     TRACKTIK_OAUTH2_URL=
     TRACKTIK_REFRESH_TOKEN=
-
-
-# Project 
-
-This creates employee providers for each provider a Provider file with the mapping schema rules will be created and a record of the provider on the database with a api_token that the provider will use in order to send data to the our API
-
-Run Create Employee Provider command
-    ./vendor/bin/sail artisan make:employee-provider ExampleProvider
-
-You can now access the server at http://localhost:80
 
 ----------
