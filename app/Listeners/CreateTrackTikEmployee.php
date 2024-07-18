@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 
-class CreateTrackTikEmployee
+class CreateTrackTikEmployee implements ShouldQueue
 {
 
     protected EmployeeResource $employeeResource;
