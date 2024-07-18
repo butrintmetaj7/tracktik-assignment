@@ -1,5 +1,8 @@
 # Tracktik Assignment API
 
+This was the base idea I came up with :)
+![Alt Text](public/design_api.png)
+
 ----------
 
 ## Installation with Docker Sail
